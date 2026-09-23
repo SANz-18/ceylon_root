@@ -1,0 +1,41 @@
+server:
+  port: 8080
+
+spring:
+  application:
+    name: ceylon-roots-backend
+
+  # H2 in-memory DB for local dev/demo. Swap to MySQL/Postgres for production.
+  datasource:
+    url: jdbc:mysql://localhost:3306/ceylon_roots?createDatabaseIfNotExist=true&useSSL=false&allowPublicKeyRetrieval=true&serverTimezone=Asia/Colombo
+    username: root
+    password: 12345
+    driver-class-name: com.mysql.cj.jdbc.Driver
+
+  #  datasource:
+  #    url: jdbc:h2:mem:ceylonroots;DB_CLOSE_DELAY=-1
+  #    driver-class-name: org.h2.Driver
+  #    username: sa
+  #    password: ""
+
+#  h2:
+#    console:
+#      enabled: true
+#      path: /h2-console
+
+  jpa:
+    hibernate:
+      ddl-auto: update
+    show-sql: false
+    properties:
+      hibernate:
+        format_sql: true
+    open-in-view: false
+
+app:
+  jwt:
+    secret: "ceylon-roots-super-secret-signing-key-change-me-in-production-32bytes+"
+    expiration-ms: 86400000
+
+  cors:
+    allowed-origins: "http://localhost:5173"
